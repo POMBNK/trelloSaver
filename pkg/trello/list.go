@@ -18,6 +18,7 @@ type List struct {
 	//Cards   []Card `json:"cards,omitempty"`
 }
 
+// GetList method is used to get list from Trello board by ID
 func (c *Client) GetList(listID string) (List, error) {
 	var list List
 	q := url.Values{}
@@ -27,4 +28,18 @@ func (c *Client) GetList(listID string) (List, error) {
 	err := c.Get(path, q, &list)
 
 	return list, err
+}
+
+// {{BasedURL}}boards/{{BoardID}}/lists?key={{Key}}&token={{Token}}
+
+// GetLists method is used to get all created lists from trello board and all meta information about them.
+func (c *Client) GetLists(boardID string) (Lists, error) {
+	var lists Lists
+	q := url.Values{}
+	q.Add("key", c.Key)
+	q.Add("token", c.Token)
+	path := fmt.Sprintf("boards/%s/lists", boardID)
+	err := c.Get(path, q, &lists)
+
+	return lists, err
 }

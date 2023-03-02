@@ -10,6 +10,9 @@ import (
 
 const basedURL = "api.trello.com"
 
+// TODO LIST:
+//		Todo: fix hardcoded constant params:key,token in all client's methods.
+
 type Client struct {
 	Client  *http.Client
 	Token   string
@@ -17,6 +20,7 @@ type Client struct {
 	BaseURL string
 }
 
+// New Trello client constructor
 func New(token, key string) *Client {
 	return &Client{
 		Client:  http.DefaultClient,
@@ -30,6 +34,8 @@ func New(token, key string) *Client {
 // <basedURL> <----------path----------> <--------------params----->
 // Path example: "/members/me/boards"
 
+// Get used to make a GET http request in all trello client's methods and get response that
+// unmarshalled from json to trello objects.
 func (c *Client) Get(path string, q url.Values, respBody interface{}) error {
 	u := url.URL{
 		Scheme: "https",
