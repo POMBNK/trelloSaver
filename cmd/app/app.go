@@ -38,7 +38,7 @@ func main() {
 	//-------------------------ATTACHMENTS----------------------------------------
 	respAttach, _ := client.GetAttachmentsFromCard(cardID)
 	for _, v := range respAttach {
-		fmt.Printf("Att_id:%s\n  FileName:%s\n  Type:%+v\n  IsUpload:%+v\n  Date:%+v\n", v.ID, v.FileName, v.MimeType, v.IsUpload, v.Date)
+		fmt.Printf("Att_id:%s\n  FileName:%s\n  Type:%+v\n  IsUpload:%+v\n  Date:%+v\n", v.ID, v.FileName, v.MimeType, v.URL, v.Date)
 	}
 }
 
