@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+type Cards []Card
+
 type Card struct {
 	client *Client
 
@@ -24,22 +26,23 @@ type Card struct {
 	Closed           bool       `json:"closed"`
 	Subscribed       bool       `json:"subscribed"`
 
-	//Board
+	////Board
 	//Board   *Board
-	IDBoard string `json:"idBoard"`
-
-	//List
-	List   *List
-	IDList string `json:"idList"`
+	//IDBoard string `json:"idBoard"`
+	//
+	////List
+	//List   *List
+	//IDList string `json:"idList"`
 }
 
 // GetCardsInList Get all cards information in current list
-func (c *Client) GetCardsInList(listID string) ([]Card, error) {
+func (c *Client) GetCardsInList(listID string) (Cards, error) {
 	var cards []Card
 	q := url.Values{}
 	q.Add("key", c.Key)
 	q.Add("token", c.Token)
 	path := fmt.Sprintf("lists/%s/cards", listID)
 	err := c.Get(path, q, &cards)
+
 	return cards, err
 }

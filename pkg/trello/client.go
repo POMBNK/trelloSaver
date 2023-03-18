@@ -44,7 +44,7 @@ func (c *Client) Get(path string, q url.Values, respBody interface{}) error {
 	}
 	req, err := http.NewRequest(http.MethodGet, u.String(), nil)
 	if err != nil {
-		fmt.Errorf("Bad GET request %s", err)
+		return fmt.Errorf("Bad GET request %s", err)
 	}
 
 	req.URL.RawQuery = q.Encode()

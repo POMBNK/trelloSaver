@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+type Attachments []Attachment
+
 type Attachment struct {
 	ID        string     `json:"id"`
 	Bytes     int64      `json:"bytes"`
@@ -59,7 +61,8 @@ func (c *Client) DownloadFile(filepath string, url string) error {
 	defer resp.Body.Close()
 
 	// Create the file
-	if err := os.Mkdir("downloaded", 0700); err != nil {
+	err = os.Mkdir("downloaded", 0700)
+	if err != nil && !os.IsExist(err) {
 		return err
 	}
 	out, err := os.Create("downloaded/" + filepath)

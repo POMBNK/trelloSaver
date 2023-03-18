@@ -1,2 +1,5 @@
 .env
 .idea
+/downloaded
+/cmd/main
+/cmd/app_testing

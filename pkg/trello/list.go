@@ -14,8 +14,8 @@ type List struct {
 	Closed  bool   `json:"closed"`
 	IDBoard string `json:"idBoard,omitempty"`
 	Pos     int64  `json:"pos,omitempty"`
-	//Board   *Board `json:"board,omitempty"`
-	//Cards   []Card `json:"cards,omitempty"`
+	Board   *Board `json:"board,omitempty"`
+	Cards   []Card `json:"cards,omitempty"`
 }
 
 // GetList method is used to get list from Trello board by ID
