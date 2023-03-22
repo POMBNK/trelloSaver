@@ -7,10 +7,6 @@ import (
 
 //Todo: make folders with list's names and sort files by folders
 
-type Service interface {
-	DownloadFiles(files map[string]string) error
-}
-
 type Saver struct {
 	Client *trello.Client
 }
