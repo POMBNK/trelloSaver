@@ -1,5 +1,5 @@
 .env
 .idea
 /downloaded
-/cmd/app_testing
 /cmd/main
+/cmd/app_testing/

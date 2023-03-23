@@ -4,7 +4,6 @@ import (
 	"github.com/POMBNK/trelloSaver/internal/service"
 	"github.com/gin-gonic/gin"
 	"log"
-	"os"
 )
 
 type Saver interface {
@@ -29,9 +28,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 func (h *Handler) Download(c *gin.Context) {
 
-	// mb make a request to get board ID in other way
-	// or make a part of trello struct
-	lists, err := h.saver.GetAllLists(os.Getenv("BOARD_ID"))
+	lists, err := h.saver.GetAllLists(h.saver.Client.BoardID)
 	if err != nil {
 		log.Printf("Can't get lists %s", err)
 	}

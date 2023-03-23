@@ -17,15 +17,17 @@ type Client struct {
 	Client  *http.Client
 	Token   string
 	Key     string
+	BoardID string
 	BaseURL string
 }
 
 // New Trello client constructor
-func New(token, key string) *Client {
+func New(token, key, boardID string) *Client {
 	return &Client{
 		Client:  http.DefaultClient,
 		Token:   token,
 		Key:     key,
+		BoardID: boardID,
 		BaseURL: basedURL,
 	}
 }

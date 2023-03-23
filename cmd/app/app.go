@@ -18,7 +18,7 @@ func main() {
 		log.Fatalf("Failed to load env vars %s", err.Error())
 	}
 
-	trelloClient := trello.New(os.Getenv("TOKEN"), os.Getenv("KEY"))
+	trelloClient := trello.New(os.Getenv("TOKEN"), os.Getenv("KEY"), os.Getenv("BOARD_ID"))
 
 	saveService := service.NewSaver(trelloClient)
 	handlers := handler.New(saveService)
