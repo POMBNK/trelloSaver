@@ -26,14 +26,17 @@ type Attachment struct {
 }
 
 // GetAttachmentsFromCard get list of attachments from current Card
-func (c *Client) GetAttachmentsFromCard(cardID string) ([]Attachment, error) {
+func (c *Client) GetAttachmentsFromCard(cardID string) (Attachments, error) {
 	var attachments []Attachment
 	q := url.Values{}
 	q.Add("key", c.Key)
 	q.Add("token", c.Token)
 	path := fmt.Sprintf("cards/%s/attachments", cardID)
 	err := c.Get(path, q, &attachments)
-	return attachments, err
+	if err != nil {
+		return nil, err
+	}
+	return attachments, nil
 }
 
 // DownloadFile will download an url to a local file. It's efficient because it will

@@ -26,11 +26,11 @@ func (c *Client) GetList(listID string) (List, error) {
 	q.Add("token", c.Token)
 	path := fmt.Sprintf("lists/%s", listID)
 	err := c.Get(path, q, &list)
-
-	return list, err
+	if err != nil {
+		return list, err
+	}
+	return list, nil
 }
-
-// {{BasedURL}}boards/{{BoardID}}/lists?key={{Key}}&token={{Token}}
 
 // GetLists method is used to get all created lists from trello board and all meta information about them.
 func (c *Client) GetLists(boardID string) (Lists, error) {
@@ -40,6 +40,8 @@ func (c *Client) GetLists(boardID string) (Lists, error) {
 	q.Add("token", c.Token)
 	path := fmt.Sprintf("boards/%s/lists", boardID)
 	err := c.Get(path, q, &lists)
-
-	return lists, err
+	if err != nil {
+		return nil, err
+	}
+	return lists, nil
 }

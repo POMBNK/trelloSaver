@@ -25,14 +25,6 @@ type Card struct {
 	Due              string     `json:"due"`
 	Closed           bool       `json:"closed"`
 	Subscribed       bool       `json:"subscribed"`
-
-	////Board
-	//Board   *Board
-	//IDBoard string `json:"idBoard"`
-	//
-	////List
-	//List   *List
-	//IDList string `json:"idList"`
 }
 
 // GetCardsInList Get all cards information in current list
@@ -43,6 +35,8 @@ func (c *Client) GetCardsInList(listID string) (Cards, error) {
 	q.Add("token", c.Token)
 	path := fmt.Sprintf("lists/%s/cards", listID)
 	err := c.Get(path, q, &cards)
-
-	return cards, err
+	if err != nil {
+		return nil, err
+	}
+	return cards, nil
 }

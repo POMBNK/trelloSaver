@@ -32,10 +32,6 @@ func New(token, key, boardID string) *Client {
 	}
 }
 
-// {{BasedURL}}boards/{{BoardID}}/lists?key={{Key}}&token={{Token}}
-// <basedURL> <----------path----------> <--------------params----->
-// Path example: "/members/me/boards"
-
 // Get used to make a GET http request in all trello client's methods and get response that
 // unmarshalled from json to trello objects.
 func (c *Client) Get(path string, q url.Values, respBody interface{}) error {
@@ -63,7 +59,7 @@ func (c *Client) Get(path string, q url.Values, respBody interface{}) error {
 
 	err = json.Unmarshal(b, respBody)
 	if err != nil {
-		return fmt.Errorf("%s", err)
+		return fmt.Errorf("Can't unmarshal body: %s", err)
 	}
 
 	return nil
